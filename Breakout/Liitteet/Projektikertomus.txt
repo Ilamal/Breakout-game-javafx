@@ -1,0 +1,5 @@
+﻿Projektikertomus Ilari Malinen harjoitustyö - Tiilien rikkomispeli (Breakout)
+
+viikko 1 5.3 - 12.3 : 6h käytetty fysiikoiden pyörittelyyn ja kokeiluun, luokkien rakentamiseen (tein niistä soveltuvia, jotta voin jatkossa muokata niitä helposti)
+ja pelin perus rakenne omaan luokkaansa. Pelissä voi nyt yhdellä pallolla rikkoa tiiliä ja pallo kimpoilee seinistä ja laudasta. Laudasta kimpoamisen tekoon meni pitkään.
+Myös graafisten olioiden layout metodin käytössä oli ongelmia. Opin liikuttelusta ja pelin fysiikoiden teosta paljon. Myös yleisiä javafx juttuja.
