@@ -1,0 +1,41 @@
+"Breakout" Tiilipeli kehittämisopas
+
+Tekijä: Ilari Malinen
+
+Työ on "breakout"-peli, eli peli jossa hiiren avulla lautaa liikuttelemalla kimmotellaan palloa rikkoen tiiliä. Tiilten
+rikkomisesta saa pisteitä (aina 10 kerrallaan). Pallojen menetyksestä menettää 15 pistettä ja joka 10:s sekuntti menettää
+5 pistettä, joten pitää olla nopea. Tiiliä rikkomalla voi vapauttaa toisen pallon joka voi nopeuttaa tiilten rikkomista.
+Tiiliä on 2 erillaista, on normaaleja oransseja jotka menevät 1 iskusta rikki ja harmaita jotka vaativat 2 iskua.
+Ohjelma alkaa menu ikkunasta josta voi valita pelata peliä tai katsoa pistetilastoja. Pistetilastot toimivat näin:
+pelin lopussa käyttäjälle tulee tekstialue ja nappi joiden avulla hän voi antaa nimensä(enemmän kuin 3 kirjainta) ja 
+tallentaa pisteensä. Pisteet tallentuvat olioina koodissa valittuun tiedostoon. Vaihtaakseen tätä tiedostoa pitää muuttaa
+Tallennus-luokan tallennuspolku muuttujaa. Pistetilastoja voidaan sitten mennä katsomaan menu screenin kautta.
+
+Ohjelmassa on useita olio luokkia :  Pelaaja, Pallo, Tiili ja Pisteet. Kaikkia käytetään pelissä ja Pisteet, joka sisältää
+pisteet (int) ja käyttäjän nimen (String) sekä pistetekstin, joka näkyy pelin aikana käyttäjälle. Pisteet-olio on Serialiazable
+eli se voidaan tallentaa tiedostoon. Pelin edetessä pisteet (int) muuttuja oliolta muuttuu ja pelin lopussa käyttäjä
+määrittelee nimi (String) kentän. Uusi peli aloitaessa luodaan aina uusi Pisteet-olio.
+
+	Ohjelma käyttää 8 eri luokkaa kokonaisuuden pyörittämiseen. 'peli' luokka lienee suurin ja tärkein. Siellä tapahtuu
+kaikki pelin tapahtumat, luodaan tiilet, pallot ja muut oliot. Luokasta löytyy myös globaalit muuttujat joita käytetään
+läpi ohjelman, kuten WINDOWLEVEYS ja WINDOWKORKEUS. Näitä muuttamalla voi säätää ikkunan suuruutta, mutta silloin täytyy
+muistaa säätää tiilien määrä, sekä pelaajan sijaintia. Peli pyörii loputtomalla animaatiolla joka kutsuu update() metodia
+8ms loopilla. Updatessa tutkitaan pallon osumista tiiliin ja pelaajaan, sekä liikutetaan palloa ja pelaajaa. Pelin loputtua
+globaali muuttuja peliloppu (boolean) muuttuu true:ksi ja silloin updatea ei enää kutsuta, vaan mennään lopputeksti osioon.
+	Pallo ja Tiili - luokat sisältävät itse kaikki metodit niiden poistamiseen ja osumien tutkimiseen. Kaikki täytyy vain kutsua
+update() metodista. Olioita voi siis huoletta lisäillä peliin, kunhan lisää tarvittavat metodi kutsut updateen. Menu, peli ja
+Highscorescreen luokat jakavat primarystageaan, jotta vaihto niiden välillä sujuisi mutkitta. 
+	Pisteiden tallentaminen tiedostoon toimii Tallennus luokan kautta. Tallennus polku löytyy luokan tallennuspolku (String) muuttujasta. 
+Sitä käyttää myös Highscorescreen jonka avulla se tietää missä pisteet sijaitsevat. Jos tiedostoa ei ole tai se on tyhjä Highscorescreen
+antaa konsoleen selityksen ja näyttää tyhjää ruutua. Pallo luokasta löytyy iso osa pelin logiikasta, kuten laskutoimitus
+joka laskee kuinka pallo pomppii pelaajasta. Se ei ole kovin kaunis lasku mutta toimiva. Sen voisi varmasti jotenkin asteiden
+avulla tehdä paremmaksi.
+
+KÄYTTÖ - aloita menu screenistä ja valitse 'Pelaa!'. Peli alkaa 3 sekunnin päästä. Käytä hiirtä liikuttamaan pelaajaa ja
+kimmottele palloa ylös tiiliin niitä rikkoen. Tiilien rikkomisesta saa pisteitä. Ajan kuluessa ja pallojen menetyksestä pisteet
+vähenevät - joten ole nopea! Voit myös vapauttaa ylhäällä olevan pallon käyttöösi, jolloin osuessa mailaasi se aktivoituu ja toimii
+aivan kuten ensimmäinen pallokin. Se voi nopeuttaa tiilien rikkomista, joka tarkoittaa enemmän pisteitä!
+Peli loppuu kun pallot loppuvat tai tiilet loppuvat. Voita tallentaa pisteesi antamalla käyttäjänimesi
+(jonka pitää olla yli 3 merkkiä pitkä ja ei teksti valmiina laatikossa) ja painamalla tallenna nappia. Ilmoitusta ei tule, mutta
+pisteesi on nyt tallennettu, voit käydä katsomassa parhaita pisteitä menun pistetilastot napista. Tai voit aloittaa menun kautta
+uuden pelin. Jos tallennus ei onnistu tai et voi lukea pisteitä, täytyy tiedostopolku vaihtaa mahdolliseksi. Pidä hauskaa!
