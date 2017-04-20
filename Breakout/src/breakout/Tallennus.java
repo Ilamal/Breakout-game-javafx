@@ -1,56 +1,83 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package breakout;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
+ * Tallennus luokka, jossa tallennetaan annetut pisteet valittuun tiedostoon
+ * Omaa tiedostonpolun johon piste-oliot tallennetaa. Voi muuttaa haluamaksi.
  *
  * @author Ilari
  */
-public class Tallennus extends Application {
+public class Tallennus implements Serializable {
+
     Pisteet pisteet;
+    static public String tallennuspolku = "C:/work/breakoutpisteet.dat";    // tiedostopolku. Muuta halumaksi!
+    static ObjectOutputStream os;
 
     public Tallennus(Pisteet pisteet) {
-        this.pisteet = pisteet;
-    }
-    
-    @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
-     * @param args the command line arguments
+     * Tallentaa annetut pisteet tiedostoon. Ensin luetaan siellä olevat pisteet
+     * listaan, lisätään listaan uusi ja sitten tallennetaan koko lista.
+     *
+     * @param pisteet Uusi piste olio tallennettavaksi
      */
-    public static void main(String[] args) {
-        launch(args);
+    static public void Tallenna(Pisteet pisteet) {
+        ArrayList<Pisteet> oliot = new ArrayList();
+
+        ObjectInputStream ois;
+        boolean tiedosto = false;
+        Object obj;
+        try {
+            ois = new ObjectInputStream(new FileInputStream(tallennuspolku));
+            while (!tiedosto) {
+                obj = null;
+                try {
+                    obj = ois.readObject();
+
+                } catch (ClassNotFoundException | EOFException ex) {
+
+                }
+                if (obj != null) {
+                    oliot.add((Pisteet) obj);   //luetaan kaikki aiemmat oliot listaan
+                } else {
+                    tiedosto = true;
+                }
+            }
+            ois.close();
+        } catch (EOFException ex) {
+
+        } catch (IOException ex) {
+
+        } finally {
+
+            try {
+                os = new ObjectOutputStream(new FileOutputStream(tallennuspolku));
+
+                oliot.add(pisteet);     //lisätään uusi olio listaan
+                for (Pisteet p : oliot) {
+
+                    os.writeObject(p);      //kirjoitetaan kaikki oliot tiedostoon
+
+                }
+                os.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Tallennus.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Tallennus.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }
-    
 }
