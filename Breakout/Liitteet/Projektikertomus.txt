@@ -1,5 +1,15 @@
-﻿Projektikertomus Ilari Malinen harjoitustyö - Tiilien rikkomispeli (Breakout)
+Projektikertomus Ilari Malinen harjoitustyö - Tiilien rikkomispeli (Breakout)
 
 viikko 1 5.3 - 12.3 : 6h käytetty fysiikoiden pyörittelyyn ja kokeiluun, luokkien rakentamiseen (tein niistä soveltuvia, jotta voin jatkossa muokata niitä helposti)
 ja pelin perus rakenne omaan luokkaansa. Pelissä voi nyt yhdellä pallolla rikkoa tiiliä ja pallo kimpoilee seinistä ja laudasta. Laudasta kimpoamisen tekoon meni pitkään.
 Myös graafisten olioiden layout metodin käytössä oli ongelmia. Opin liikuttelusta ja pelin fysiikoiden teosta paljon. Myös yleisiä javafx juttuja.
+
+viikko 2 13.3- 19.3 : 11 h käytetty pelin loppuun tekoon, ideoimiseen kuinka lopetus ja tallennus voisi toimia. Monessa kohtaa tuli erinäisiä ongelmia joita ratkaistua
+oppi jälleen muistamaan perusjutut. Peli näyttää nyt paljon laadukkaammalta, fysiikat toimivathieman paremmin, mutta koodista tuli melko sotkuinen ja epäselvä. 
+Globaalien muuttujien käytöstä tuli paha tapa ja niitä kertyi melkoisesti. Opin jatkossa tekemään heti siistimpää koodia. Tiiliä on nyt kahden tyylisiä ja mahdollisia
+palloja 2. Toisen saa vapautettua rikkomalla tiiliä. Nyt pitää keskittyä tallentamiseen ja menu screenin luontiin.
+
+viikko 3 20.3-23.3 : 7h käytetty tallennus screenin luontiin, menu screenin luontiin ja highscore screenin luontiin. Aluksi piti miettiä kuinka niiden välillä on
+kätevä liikkua ja se lopulta valkeni ihan kivaksi. Tiedostoon tallentamisessa oli omat ongelmansa, mutta kun tajusin että pitää ensin lukea kaikki muut listaan ja sitte
+tallentaa koko lista uusiksi alkoi sujumaan. Kommentoin kaiken loppuun ja loin javadocin. Opin olioiden tallentamisesta ja virheiden käsittelystä jonkin verran.
+Aika alkoi loppua joten en ehtinyt kaunistella käyttöliittymässä, mutta kaikki toimii smoothisti ja loogisesti. Yksinkertainen on kaunista.
